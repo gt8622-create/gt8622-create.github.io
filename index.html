@@ -1,304 +1,627 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>이력서 · 홍근태</title>
-  <meta name="description" content="백엔드 개발(Java/Spring) 신입 지원자 홍근태의 이력서입니다.">
-  <link rel="stylesheet" href="assets/css/site.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>홍근태 | 개발자 포트폴리오</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Pretendard", "Noto Sans KR", Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .resume {
+            background: white;
+            border-radius: 18px;
+            padding: 50px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        /* 상단 */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+            padding-bottom: 35px;
+            border-bottom: 2px solid #222;
+        }
+
+        .header-text h1 {
+            margin: 0 0 8px;
+            font-size: 38px;
+            letter-spacing: -1px;
+        }
+
+        .header-text .job {
+            margin: 0;
+            font-size: 18px;
+            color: #2563eb;
+            font-weight: 600;
+        }
+
+        .header-text .intro {
+            margin-top: 18px;
+            color: #666;
+            font-size: 15px;
+        }
+
+        .profile {
+            width: 130px;
+            height: 160px;
+            border-radius: 12px;
+            background: #e9eef7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #777;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        /* 섹션 */
+        section {
+            margin-top: 45px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            margin: 0 0 20px;
+            padding-left: 12px;
+            border-left: 5px solid #2563eb;
+        }
+
+        /* 인적사항 */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 35px;
+        }
+
+        .info-item {
+            display: flex;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .info-label {
+            width: 90px;
+            font-weight: 700;
+            color: #555;
+        }
+
+        .info-value {
+            flex: 1;
+        }
+
+        /* 학력 */
+        .education {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .education th,
+        .education td {
+            padding: 14px 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .education th {
+            background: #f3f6fb;
+            font-weight: 700;
+        }
+
+        /* 기술 */
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .skill-card {
+            border: 1px solid #e1e5ec;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .skill-card h3 {
+            margin: 0 0 12px;
+            font-size: 17px;
+        }
+
+        .skill-card p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background: #eef4ff;
+            color: #2563eb;
+            padding: 6px 11px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* 프로젝트 */
+        .project {
+            border: 1px solid #e1e5ec;
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 18px;
+        }
+
+        .project h3 {
+            margin: 0 0 8px;
+            font-size: 20px;
+        }
+
+        .project-period {
+            color: #888;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .project p {
+            color: #555;
+            margin: 8px 0;
+        }
+
+        .project strong {
+            color: #222;
+        }
+
+        /* 자기소개 */
+        .about {
+            background: #f7f9fc;
+            padding: 25px;
+            border-radius: 12px;
+            color: #555;
+        }
+
+        /* 연락처 */
+        .contact {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .contact-item {
+            padding: 18px;
+            border: 1px solid #e1e5ec;
+            border-radius: 10px;
+        }
+
+        .contact-item strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* 푸터 */
+        footer {
+            margin-top: 45px;
+            padding-top: 25px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            color: #999;
+            font-size: 13px;
+        }
+
+        /* 모바일 */
+        @media (max-width: 700px) {
+            .container {
+                margin: 20px auto;
+            }
+
+            .resume {
+                padding: 25px;
+                border-radius: 12px;
+            }
+
+            .header {
+                flex-direction: column-reverse;
+                align-items: flex-start;
+            }
+
+            .profile {
+                width: 110px;
+                height: 135px;
+            }
+
+            .header-text h1 {
+                font-size: 30px;
+            }
+
+            .info-grid,
+            .skills,
+            .contact {
+                grid-template-columns: 1fr;
+            }
+
+            .education {
+                font-size: 13px;
+            }
+
+            .education th,
+            .education td {
+                padding: 9px 5px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <article class="sheet">
-    <header>
-      <h1>이력서</h1>
-      <p class="doc-note">작성일: 2026년 9월 18일</p>
-    </header>
 
-    <main>
-      <!-- ── 인적사항 ───────────────────────────── -->
-      <section aria-labelledby="h-personal">
-        <h2 id="h-personal">인적사항</h2>
-        <table class="personal">
-          <caption>성명, 연락처, 병역 등 기본 인적사항</caption>
-          <tbody>
-            <tr>
-              <td class="photo" rowspan="5">
-                <div class="photo-box">
-                  <span>사&nbsp;&nbsp;진</span>
-                  <span>(3cm × 4cm)</span>
+<div class="container">
+
+    <div class="resume">
+
+        <!-- HEADER -->
+        <header class="header">
+
+            <div class="header-text">
+                <h1>홍근</h1>
+
+                <p class="job">
+                    Backend Developer
+                </p>
+
+                <p class="intro">
+                    문제를 발견하면 직접 찾아보고 해결하는 것을 좋아하는 개발자입니다.<br>
+                    Java와 Spring을 중심으로 다양한 개발 기술을 공부하고 있습니다.
+                </p>
+            </div>
+
+            <div class="profile">
+                프로필 사진
+            </div>
+
+        </header>
+
+
+        <!-- 인적사항 -->
+        <section>
+
+            <h2 class="section-title">
+                인적사항
+            </h2>
+
+            <div class="info-grid">
+
+                <div class="info-item">
+                    <div class="info-label">성명</div>
+                    <div class="info-value">홍근태</div>
                 </div>
-              </td>
-              <th scope="row">성명</th>
-              <td>홍근태 (洪根台)</td>
-              <th scope="row">생년월일</th>
-              <td>2001년 3월 14일 (만 25세)</td>
-            </tr>
-            <tr>
-              <th scope="row">휴대전화</th>
-              <td>010-3940-6876</td>
-              <th scope="row">이메일</th>
-              <td>gt8622@naver.com</td>
-            </tr>
-            <tr>
-              <th scope="row">주소</th>
-              <td>경기도 용인시 처인구 마평동 자이아파트 106동 503호</td>
-              <th scope="row">병역</th>
-              <td>만기전역 (육군 병장, 2021.09.20 ~ 2023.03.19)</td>
-            </tr>
-            <tr>
-              <th scope="row">GitHub</th>
-              <td><a href="https://github.com/gt8622-create/gt8622-create.github.io">github.com/gt8622-create/gt8622-create.github.io</a></td>
-              <th scope="row">포트폴리오</th>
-              <td><a href="rosproject.html">ROS 2 자율주행 학습 가이드 (rosproject.html)</a></td>
-            </tr>
-            <tr>
-              <th scope="row">희망직무</th>
-              <td>백엔드 개발 (Java / Spring)</td>
-              <th scope="row">희망근무지</th>
-              <td>서울 · 경기</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
 
-      <!-- ── 학력사항 ───────────────────────────── -->
-      <section aria-labelledby="h-education">
-        <h2 id="h-education">학력사항</h2>
-        <table>
-          <caption>재학기간별 학교, 전공, 학점, 졸업구분</caption>
-          <thead>
-            <tr>
-              <th scope="col">재학기간</th>
-              <th scope="col">학교명</th>
-              <th scope="col">전공</th>
-              <th scope="col">학점</th>
-              <th scope="col">졸업구분</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="center">2021.03 ~ 2027.02</td>
-              <td>배재대학교</td></td>
-              <td>소프트웨어학과</td>
-              <td class="center">3.52 / 4.5</td>
-              <td class="center">졸업</td>
-            </tr>
-            <tr>
-              <td class="center">2019.03 ~ 2021.01</td>
-              <td>고림고등학교</td>
-              <td>이과계열</td>
-              <td class="center">—</td>
-              <td class="center">졸업</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
+                <div class="info-item">
+                    <div class="info-label">생년월일</div>
+                    <div class="info-value">2002년 8월 8일</div>
+                </div>
 
-      <!-- ── 기술 항목 ──────────────────────────── -->
-      <section aria-labelledby="h-skills">
-        <h2 id="h-skills">보유 기술</h2>
-        <table class="skills">
-          <caption>구분별 보유 기술, 숙련도, 활용 경험</caption>
-          <thead>
-            <tr>
-              <th scope="col" class="category">구분</th>
-              <th scope="col">기술</th>
-              <th scope="col">숙련도</th>
-              <th scope="col">활용 경험</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="rowgroup" rowspan="3">프로그래밍 언어</th>
-              <td class="name">Python 3 (rclpy)</td>
-              <td class="level">하</td>
-              <td>ROS 2 노드 구현 및 센서 데이터 처리 · 분석 스크립트 작성</td>
-            </tr>
-            <tr>
-              <td class="name">C++ 17 (rclcpp)</td>
-              <td class="level">하</td>
-              <td>주행 제어 노드 구현, 실시간성이 필요한 구간에 적용</td>
-            </tr>
-            <tr>
-              <td class="name">Bash / CMake</td>
-              <td class="level">하</td>
-              <td>colcon 빌드 설정, 다중 노드 실행 환경 자동화</td>
-            </tr>
-            <tr>
-              <th scope="rowgroup" rowspan="4">ROS 2 (미들웨어)</th>
-              <td class="name">ROS 2 Humble</td>
-              <td class="level">상</td>
-              <td>토픽 · 서비스 · 액션 기반 패키지 8종 구현, Launch · Parameter 구성</td>
-            </tr>
-            <tr>
-              <td class="name">tf2 좌표 변환</td>
-              <td class="level">중</td>
-              <td>로봇 · 센서 좌표계 정의 및 변환 트리 구성</td>
-            </tr>
-            <tr>
-              <td class="name">URDF / Xacro · ros2_control</td>
-              <td class="level">중</td>
-              <td>차동 구동 로봇 모델링, 하드웨어 인터페이스 연동</td>
-            </tr>
-            <tr>
-              <td class="name">DDS · QoS 설정</td>
-              <td class="level">하</td>
-              <td>센서 스트림 유실 개선을 위한 QoS 프로파일 조정 경험</td>
-            </tr>
-            <tr>
-              <th scope="rowgroup" rowspan="4">자율주행 스택</th>
-              <td class="name">Nav2 (내비게이션)</td>
-              <td class="level">상</td>
-              <td>전역 · 지역 경로계획, Costmap 파라미터 튜닝, 복구 동작 구성</td>
-            </tr>
-            <tr>
-              <td class="name">Gazebo · RViz2</td>
-              <td class="level">상</td>
-              <td>주행 시뮬레이션 환경 구축 및 센서 · 경로 데이터 시각화 검증</td>
-            </tr>
-            <tr>
-              <td class="name">SLAM Toolbox · Cartographer</td>
-              <td class="level">중</td>
-              <td>실내 2D 지도 작성 및 맵 후처리</td>
-            </tr>
-            <tr>
-              <td class="name">AMCL (위치추정)</td>
-              <td class="level">중</td>
-              <td>파티클 수 · 센서 모델 조정으로 초기 위치 수렴 시간 단축</td>
-            </tr>
-            <tr>
-              <th scope="rowgroup" rowspan="3">인지 · 센서</th>
-              <td class="name">2D LiDAR (LaserScan)</td>
-              <td class="level">중</td>
-              <td>장애물 감지 및 지도 작성용 스캔 데이터 처리</td>
-            </tr>
-            <tr>
-              <td class="name">IMU · 휠 오도메트리</td>
-              <td class="level">중</td>
-              <td>robot_localization(EKF) 기반 센서 융합으로 위치 오차 보정</td>
-            </tr>
-            <tr>
-              <td class="name">카메라 · OpenCV</td>
-              <td class="level">하</td>
-              <td>차선 · 표지 인식 실습, 이미지 전처리 및 검출</td>
-            </tr>
-            <tr>
-              <th scope="rowgroup" rowspan="3">개발 환경 · 도구</th>
-              <td class="name">Ubuntu 22.04 (Linux)</td>
-              <td class="level">상</td>
-              <td>개발 · 시험 환경 구성 및 셸 기반 운용</td>
-            </tr>
-            <tr>
-              <td class="name">colcon · Git / GitHub</td>
-              <td class="level">상</td>
-              <td>워크스페이스 빌드 관리, 브랜치 전략 적용 협업</td>
-            </tr>
-            <tr>
-              <td class="name">rosbag2 · rqt · Docker</td>
-              <td class="level">중</td>
-              <td>주행 로그 기록 · 재생 분석, 개발 환경 컨테이너화</td>
-            </tr>
-          </tbody>
-        </table>
-        <p class="legend">※ 숙련도 — 상: 실무 수준으로 단독 구현 가능 / 중: 문서를 참고해 구현 가능 / 하: 기본 개념 이해 및 사용 경험 보유</p>
-      </section>
-      
-      <!-- ── 교육 이수 ──────────────────────────── -->
-      <section aria-labelledby="h-training">
-        <h2 id="h-training">교육 이수</h2>
-        <table>
-          <caption>교육기간, 교육기관, 과정명, 이수 여부</caption>
-          <thead>
-            <tr>
-              <th scope="col">교육기간</th>
-              <th scope="col">교육기관</th>
-              <th scope="col">과정명</th>
-              <th scope="col">이수</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="center">2026.07 ~ 2027.02</td>
-              <td>미래융합교육원</td>
-              <td>인공지능 AI 로보테크 개발자 양성과정 (6개월)</td>
-              <td class="center">수료</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
+                <div class="info-item">
+                    <div class="info-label">전화</div>
+                    <div class="info-value">010-3940-6876</div>
+                </div>
 
-      <!-- ── 프로젝트 경험 ──────────────────────── -->
-      <section aria-labelledby="h-project">
-        <h2 id="h-project">프로젝트 경험</h2>
-        <table>
-          <caption>수행기간별 프로젝트명, 담당 역할 및 사용 기술</caption>
-          <thead>
-            <tr>
-              <th scope="col">수행기간</th>
-              <th scope="col">프로젝트명</th>
-              <th scope="col">담당 업무 및 사용 기술</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="center">2026.06 ~ 2026.08</td>
-              <td>도서 대출 관리 시스템<br>(팀 4명 / 백엔드 담당)</td>
-              <td>
-                <ul class="project-detail">
-                  <li>대출 · 반납 및 연체 정산 API 설계와 구현 담당</li>
-                  <li>동일 도서 중복 대출을 막는 검증 로직 추가</li>
-                  <li>목록 조회 쿼리에 인덱스를 적용해 응답 1.8초 → 0.4초로 단축</li>
-                  <li>사용 기술: Spring Boot, JPA, MySQL, Docker, Git</li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <td class="center">2026.04 ~ 2026.05</td>
-              <td>사내 공지 알림 서비스<br>(개인)</td>
-              <td>
-                <ul class="project-detail">
-                  <li>WebSocket 기반 실시간 공지 전송 기능 단독 구현</li>
-                  <li>AWS EC2에 배포하여 운영 환경 구성 경험</li>
-                  <li>사용 기술: Spring Boot, WebSocket, Redis, AWS EC2</li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <td class="center">2025.09 ~ 2025.12</td>
-              <td>캠퍼스 중고거래 플랫폼<br>(졸업작품 / 팀 3명)</td>
-              <td>
-                <ul class="project-detail">
-                  <li>회원 가입 · 인증 및 상품 등록 API 구현</li>
-                  <li>화면과 서버 간 데이터 규격 정의 및 연동 테스트 주관</li>
-                  <li>사용 기술: Spring Boot, MySQL, React, Git</li>
-                </ul>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
+                <div class="info-item">
+                    <div class="info-label">이메일</div>
+                    <div class="info-value">
+                        gt8622@naver.com
+                    </div>
+                </div>
 
-      <!-- ── 자기소개서 ─────────────────────────── -->
-      <section aria-labelledby="h-letter">
-        <h2 id="h-letter">자기소개서</h2>
-        <div class="letter">
-          <h3>성장과정 및 성격</h3>
-          <p>기록하는 습관을 오래 유지해 왔습니다. 대학 2학년 때 팀 과제에서 같은 오류를 세 번 반복해 고친 일이 계기가 되어, 그때부터 해결한 문제와 원인을 정리해 두는 저장소를 따로 운영하고 있습니다. 덕분에 교육과정에서는 팀원들이 막힌 부분을 물어보는 일이 잦았고, 정리한 내용을 공유하며 함께 진도를 맞출 수 있었습니다. 맡은 일의 진행 상황을 먼저 알리는 편이라 협업 과정에서 일정이 어긋나는 일이 적었습니다.</p>
+                <div class="info-item">
+                    <div class="info-label">GitHub</div>
+                    <div class="info-value">
+                        <a href="https://github.com/gt8622-create" target="_blank">
+                            github.com/gt8622-create
+                        </a>
+                    </div>
+                </div>
 
-          <h3>지원동기</h3>
-          <p>사용자에게 직접 닿는 서비스의 뒷단을 만드는 일에 관심을 두고 백엔드 개발을 준비했습니다. 학부 전공에서 자료구조와 데이터베이스의 기초를 쌓고, 졸업 후 960시간 교육과정에서 Spring Boot 기반의 API 서버를 세 차례 처음부터 구축하며 설계와 구현의 간격을 좁혀 왔습니다. 안정적인 서비스 운영을 중요하게 여기는 귀사에서 기초가 탄탄한 개발자로 성장하고자 지원하게 되었습니다.</p>
+                <div class="info-item">
+                    <div class="info-label">희망직무</div>
+                    <div class="info-value">
+                        백엔드 개발 (Java / Spring)
+                    </div>
+                </div>
 
-          <h3>입사 후 포부</h3>
-          <p>입사 후 첫 1년은 담당 서비스의 코드와 데이터 구조를 정확히 파악하는 데 집중하겠습니다. 작은 기능이라도 요구사항의 의도를 확인한 뒤 구현하고, 맡은 부분에 대해서는 테스트 코드까지 책임지는 습관을 들이겠습니다. 이후에는 프로젝트에서 경험한 성능 개선을 더 깊이 다뤄, 문제가 생겼을 때 원인을 데이터로 설명할 수 있는 개발자가 되겠습니다.</p>
-        </div>
-      </section>
-    </main>
+                <div class="info-item">
+                    <div class="info-label">희망근무지</div>
+                    <div class="info-value">
+                        서울 · 경기
+                    </div>
+                </div>
 
-    <footer class="signature">
-      <p class="oath">위의 모든 기재 사항은 사실과 다름없습니다.</p>
-      <p class="date">2026년 9월 18일</p>
-      <p class="name">작성자: <strong>홍길동</strong>(인)</p>
-    </footer>
-  </article>
+            </div>
+
+        </section>
+
+
+        <!-- 학력 -->
+        <section>
+
+            <h2 class="section-title">
+                학력사항
+            </h2>
+
+            <table class="education">
+
+                <thead>
+                    <tr>
+                        <th>기간</th>
+                        <th>학교</th>
+                        <th>전공</th>
+                        <th>학점</th>
+                        <th>구분</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>2020.03 ~ 2026.02</td>
+                        <td>배재대학교</td>
+                        <td>컴퓨터공학과</td>
+                        <td>3.72 / 4.5</td>
+                        <td>졸업</td>
+                    </tr>
+
+                    <tr>
+                        <td>2017.03 ~ 2020.02</td>
+                        <td>고림고등학교</td>
+                        <td>이과계열</td>
+                        <td>-</td>
+                        <td>졸업</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+
+        <!-- 보유 기술 -->
+        <section>
+
+            <h2 class="section-title">
+                보유 기술
+            </h2>
+
+            <div class="skills">
+
+                <div class="skill-card">
+
+                    <h3>Programming</h3>
+
+                    <div class="tags">
+                        <span class="tag">Java</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">C</span>
+                        <span class="tag">C++</span>
+                        <span class="tag">Dart</span>
+                    </div>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <h3>Backend</h3>
+
+                    <div class="tags">
+                        <span class="tag">Spring</span>
+                        <span class="tag">Spring Boot</span>
+                        <span class="tag">REST API</span>
+                    </div>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <h3>Database</h3>
+
+                    <div class="tags">
+                        <span class="tag">MySQL</span>
+                        <span class="tag">Firebase</span>
+                        <span class="tag">SQL</span>
+                    </div>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <h3>Tools & Others</h3>
+
+                    <div class="tags">
+                        <span class="tag">GitHub</span>
+                        <span class="tag">Flutter</span>
+                        <span class="tag">Linux</span>
+                        <span class="tag">ROS2</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- 프로젝트 -->
+        <section>
+
+            <h2 class="section-title">
+                프로젝트
+            </h2>
+
+
+            <div class="project">
+
+                <h3>냉장고 식재료 기반 레시피 추천 서비스</h3>
+
+                <div class="project-period">
+                    Capstone Design
+                </div>
+
+                <p>
+                    <strong>기술:</strong>
+                    Flutter · Firebase · Gemini API
+                </p>
+
+                <p>
+                    냉장고에 보유하고 있는 식재료를 입력하거나 사진으로 등록하여
+                    사용자에게 적합한 레시피를 추천하는 서비스입니다.
+                </p>
+
+                <p>
+                    일반식과 다이어트 레시피를 구분하고,
+                    칼로리와 탄수화물·단백질·지방 정보를 제공하도록 설계했습니다.
+                </p>
+
+            </div>
+
+
+            <div class="project">
+
+                <h3>ROS 2 자율주행 학습 프로젝트</h3>
+
+                <div class="project-period">
+                    ROS 2 · C++
+                </div>
+
+                <p>
+                    <strong>기술:</strong>
+                    ROS 2 · C++ · Python
+                </p>
+
+                <p>
+                    ROS 2 환경에서 노드와 토픽을 활용하여
+                    로봇 제어 및 자율주행 opencv 관련 기능을 학습했습니다.
+                </p>
+
+            </div>
+
+
+            <div class="project">
+
+                <h3>운동 자세 분석 프로젝트</h3>
+
+                <div class="project-period">
+                    Capstone / AI
+                </div>
+
+                <p>
+                    <strong>기술:</strong>
+                    Flutter · MoveNet · TensorFlow Lite
+                </p>
+
+                <p>
+                    카메라를 이용해 사용자의 운동 자세를 인식하고
+                    관절 좌표를 기반으로 운동 동작을 분석하는 프로젝트입니다.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- 자기소개 -->
+        <section>
+
+            <h2 class="section-title">
+                자기소개
+            </h2>
+
+            <div class="about">
+
+                <p>
+                    새로운 것을 배우는 과정에서 궁금한 점이 생기면
+                    직접 찾아보고 해결하는 것을 중요하게 생각합니다.
+                </p>
+
+                <p>
+                    처음 접하는 기술이라도 실패를 두려워하기보다
+                    직접 시도하면서 문제를 해결하는 편입니다.
+                </p>
+
+                <p>
+                    팀 프로젝트에서는 서로 다른 의견을 존중하고,
+                    문제가 발생했을 때 <strong>5 Whys</strong>와 같은 방법을 활용하여
+                    원인을 먼저 파악한 뒤 해결책을 찾으려고 노력합니다.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- 연락처 -->
+        <section>
+
+            <h2 class="section-title">
+                Contact
+            </h2>
+
+            <div class="contact">
+
+                <div class="contact-item">
+                    <strong>Email</strong>
+                    gt8622@naver.com
+                </div>
+
+                <div class="contact-item">
+                    <strong>GitHub</strong>
+                    <a href="https://github.com/gt8622-create" target="_blank">
+                        github.com/gt8622-create
+                    </a>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+            © 2026 홍근태. All Rights Reserved.
+        </footer>
+
+    </div>
+
+</div>
+
 </body>
 </html>
